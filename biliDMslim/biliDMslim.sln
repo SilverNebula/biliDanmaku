@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1022
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "biliDMslim", "biliDMslim\biliDMslim.csproj", "{2540444F-814B-4266-A163-8FC8E7A60BA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2540444F-814B-4266-A163-8FC8E7A60BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2540444F-814B-4266-A163-8FC8E7A60BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2540444F-814B-4266-A163-8FC8E7A60BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2540444F-814B-4266-A163-8FC8E7A60BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB440E61-BE0B-4870-B1B1-CFE3AB0A2069}
+	EndGlobalSection
+EndGlobal
