@@ -33,33 +33,36 @@ namespace biliDanmaku
         }
         public void Addlog(string str)
         {
-            MainLog.Text += str + Environment.NewLine;
+            MainLog.AppendText(str + Environment.NewLine);
             MainLog.Refresh();
             return;
         }
 
-        private void LinkStart(object sender, EventArgs e)
+        private async void LinkStartAsync(object sender, EventArgs e)
         {
             int roomid = int.Parse(RoomID.Text);
             try
             {
-                var result = DMloader.ConnectAsync(roomid);
-                result.Wait();
+                var result = await DMloader.ConnectAsync(roomid);
             }
             catch (Exception)
             {
                 MessageBox.Show("连接错误", "ERROR", MessageBoxButtons.OK);
                 return;
             }
-            Addlog("看上去连接成功了");
+            Addlog("正在连接");
             return;
         }
         private void OnReceivedDanmaku(object sender,ReceivedDanmakuArgs e)
         {
             string text = e.Danmaku.CommentText;
-            Console.WriteLine(text);
-            Addlog(text);
-            this.MainLog.Refresh();
+            if (text == null) return;
+            //Console.WriteLine(text);
+            this.Invoke(new Action(() => 
+                {
+                Addlog(text);
+                })
+            );
             return;
         }
         private void OnReceivedRoomCount(object sender,ReceivedRoomCountArgs e)

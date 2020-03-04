@@ -60,7 +60,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "连接";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.LinkStart);
+            this.button1.Click += new System.EventHandler(this.LinkStartAsync);
             // 
             // MainLog
             // 
@@ -69,6 +69,7 @@
             this.MainLog.Location = new System.Drawing.Point(58, 106);
             this.MainLog.Multiline = true;
             this.MainLog.Name = "MainLog";
+            this.MainLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.MainLog.Size = new System.Drawing.Size(374, 447);
             this.MainLog.TabIndex = 3;
             // 
