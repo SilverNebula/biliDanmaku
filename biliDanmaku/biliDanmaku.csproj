@@ -33,7 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>225C715768EF38490302376DF34884B4FF45D014</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>biliDanmaku_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -52,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DanmakuLib\DanmakuLoader.cs" />
+    <Compile Include="DanmakuLib\utils.cs" />
     <Compile Include="DesktopManage.cs" />
     <Compile Include="InfoMonitor.cs" />
     <Compile Include="infoMonitorForm.cs">
@@ -108,14 +116,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\bililive_dm\BilibiliDM_PluginFramework\BilibiliDM_PluginFramework.csproj">
-      <Project>{62fe6607-fe23-4df0-bf23-9fb7d70c829a}</Project>
+    <ProjectReference Include="..\BilibiliDM_PluginFramework\BilibiliDM_PluginFramework.csproj">
+      <Project>{338aad7a-0dd8-4e3a-afdd-fa79395ca137}</Project>
       <Name>BilibiliDM_PluginFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\bililive_dm\BiliDMLib\BiliDMLib.csproj">
-      <Project>{76778870-a6f5-43f4-9baa-dec0473f217e}</Project>
-      <Name>BiliDMLib</Name>
-    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
