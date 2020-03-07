@@ -10,7 +10,7 @@ namespace biliDanmaku
     public class TextFilter
     {
         private HashSet<string> hs;
-        void init()
+        public void init()
         {
             if (hs==null)
             {
@@ -32,6 +32,10 @@ namespace biliDanmaku
         public bool Check(string name)
         {
             return hs.Contains(name);
+        }
+        public bool Checktxt(string txt)
+        {
+            return false;
         }
     }
 }

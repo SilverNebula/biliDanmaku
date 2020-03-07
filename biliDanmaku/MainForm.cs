@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BiliDMLib;
 using BilibiliDM_PluginFramework;
+using System.Runtime.InteropServices;
 
 namespace biliDanmaku
 {
@@ -60,9 +61,11 @@ namespace biliDanmaku
             //Console.WriteLine(text);
             this.Invoke(new Action(() => 
                 {
-                Addlog(text);
+                    Addlog(text);
+                    textFilterForm1.OnReceive(sender, e);
                 })
             );
+            
             return;
         }
         private void OnReceivedRoomCount(object sender,ReceivedRoomCountArgs e)
@@ -79,6 +82,19 @@ namespace biliDanmaku
         {
             Addlog(e.message);
             return;
+        }
+
+
+        [DllImport("user32.dll", EntryPoint = "SetParent")]
+        public static extern int SetParent(int hWndChild, int hWndNewParent);
+
+        [DllImport("user32.dll", EntryPoint = "FindWindow")]
+        public static extern int FindWindow(string lpClassName, string lpWindowName);  
+
+        private void myLoad(object sender, EventArgs e) {
+            //DesktopManage.Apply(this);
+            SetParent(this.Handle.ToInt32(), FindWindow("Progman", "Program Manager"));
+            Rectangle ScreenArea = System.Windows.Forms.Screen.GetWorkingArea(this); 
         }
     }
 }

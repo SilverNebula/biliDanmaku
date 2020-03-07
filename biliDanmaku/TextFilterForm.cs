@@ -17,24 +17,60 @@ namespace biliDanmaku
         public TextFilterForm()
         {
             InitializeComponent();
+            textFilter.init();
         }
-        DateTime nowtime;
+        DateTime nowtime=new DateTime();
         //接受弹幕时处理 
         public void OnReceive(object sender, ReceivedDanmakuArgs e)
         {
             nowtime = DateTime.Now;
             string a = e.Danmaku.CommentText;
             string b = e.Danmaku.UserName;
+            if (a == null || a == "") return;
             if (check1.Checked && a[0] == '【' && a[a.Length - 1] == '】')
             {
-                    this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
-                    this.LogBox.Refresh();
+                    
+                    this.Invoke(new Action(() =>
+                    {
+                        this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
+                        this.LogBox.Refresh();
+                    })
+                    );
                     return;
+            }
+            if(checkBox1.Checked)
+            {
+                bool flag = false;
+                for(int i = 0; i < TargetList.Items.Count;i++)
+                {
+                    if (a.Contains(TargetList.Items[i].Text))
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag == true)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        this.LogBox.Text += a + "|" + b + "|" + Environment.NewLine;
+                    //this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
+                    this.LogBox.Refresh();
+                    })
+                    );
+                }
             }
             if (textFilter.Check(b))
             {
-                this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
-                this.LogBox.Refresh();
+                this.Invoke(new Action(() =>
+                {
+                    this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
+                    //this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
+                    this.LogBox.Refresh();
+                })
+                );
+                
+                //this.LogBox.Refresh();
             }
             return;
         }
@@ -44,6 +80,7 @@ namespace biliDanmaku
             if (addName.Text != "")
             {
                 string tar = addName.Text;
+                textFilter.Add(tar);
                 TargetList.Items.Add(tar);
             }
             addName.Text = "";
