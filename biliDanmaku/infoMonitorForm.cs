@@ -14,6 +14,7 @@ namespace biliDanmaku
     {
         public infoMonitorForm() {
             InitializeComponent();
+            timer1.Stop();
         }
         public void UpdateUI() {
             if (InfoMonitor.succeed == false) {
@@ -21,6 +22,7 @@ namespace biliDanmaku
                 this.play_number.Text = "ERROR";
                 return;
             }
+            this.fan_number.Text = InfoMonitor.fan_number.ToString();
             this.play_number.Text = InfoMonitor.play_number.ToString();
             return;
         }
@@ -41,6 +43,7 @@ namespace biliDanmaku
             Console.WriteLine("uid:{0}", uid);
             lasttime = 0;
             bool result = await InfoMonitor.Getinfo(uid);
+            timer1.Start();
             UpdateUI();
             return;
         }

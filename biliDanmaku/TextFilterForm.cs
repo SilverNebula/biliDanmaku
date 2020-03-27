@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using BilibiliDM_PluginFramework;
 
 namespace biliDanmaku
@@ -21,6 +22,14 @@ namespace biliDanmaku
         }
         DateTime nowtime=new DateTime();
         //接受弹幕时处理 
+        private void AddLog(string str) {
+            this.LogBox.AppendText(str);
+            if (!this.LogBox.Focused) {
+                this.LogBox.Select(this.LogBox.Text.Length,0);
+                this.LogBox.ScrollToCaret();
+            }
+            return;
+        }
         public void OnReceive(object sender, ReceivedDanmakuArgs e)
         {
             nowtime = DateTime.Now;
@@ -32,7 +41,7 @@ namespace biliDanmaku
                     
                     this.Invoke(new Action(() =>
                     {
-                        this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
+                        this.AddLog(nowtime.ToString() + a + Environment.NewLine);
                         this.LogBox.Refresh();
                     })
                     );
@@ -53,9 +62,9 @@ namespace biliDanmaku
                 {
                     this.Invoke(new Action(() =>
                     {
-                        this.LogBox.Text += a + "|" + b + "|" + Environment.NewLine;
-                    //this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
-                    this.LogBox.Refresh();
+                        this.AddLog(a + "|" + b + "|" + Environment.NewLine);
+                        //this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
+                        this.LogBox.Refresh();
                     })
                     );
                 }
@@ -64,13 +73,10 @@ namespace biliDanmaku
             {
                 this.Invoke(new Action(() =>
                 {
-                    this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
-                    //this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
+                    this.AddLog(nowtime.ToString() + a + Environment.NewLine);
                     this.LogBox.Refresh();
                 })
                 );
-                
-                //this.LogBox.Refresh();
             }
             return;
         }
@@ -97,6 +103,30 @@ namespace biliDanmaku
                     textFilter.Del(tar);
                     TargetList.SelectedItems[0].Remove();
                 }
+            }
+            return;
+        }
+
+        private void btn_save_Click(object sender, EventArgs e) {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "文本文件(*.txt)|*.txt";
+            saveFileDialog.OverwritePrompt = false;
+            if (saveFileDialog.ShowDialog() != DialogResult.Cancel) {
+                string dst = saveFileDialog.FileName;
+                FileStream fileStream = new FileStream(dst, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read);
+                fileStream.Position = fileStream.Length;
+                StreamWriter streamWriter = new StreamWriter(fileStream);
+                try {
+                    
+                    streamWriter.Write(this.LogBox.Text);
+                    streamWriter.Close();
+                }
+                catch {
+                    MessageBox.Show("保存失败");
+                    return;
+                }
+                this.LogBox.Text = "";
+                fileStream.Close();
             }
             return;
         }

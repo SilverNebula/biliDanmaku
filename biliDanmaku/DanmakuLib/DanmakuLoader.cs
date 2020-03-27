@@ -208,6 +208,7 @@ namespace BiliDMLib
                                     }
                                     catch (Exception)
                                     {
+                                        Console.WriteLine("wtf");
                                         // ignored
                                     }
 

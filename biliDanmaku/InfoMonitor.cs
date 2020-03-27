@@ -22,6 +22,8 @@ namespace biliDanmaku
             //try {
                 var req = await httpClient.GetStringAsync(connectStr + userid.ToString() + "&jsonp=jsonp");
                 Console.WriteLine(req.ToString());
+                var userobj1 = JObject.Parse(req);
+                fan_number = int.Parse(userobj1["data"]["follower"].ToString());
                 req = await httpClient.GetStringAsync(connectStr2 + userid.ToString());
                 Console.WriteLine(req.ToString());
                 var userobj2 = JObject.Parse(req);

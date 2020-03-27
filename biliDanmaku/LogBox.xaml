@@ -1,0 +1,15 @@
+﻿<UserControl x:Name="TextBoxPanel" x:Class="biliDanmaku.LogBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:biliDanmaku"
+             mc:Ignorable="d" 
+             d:DesignHeight="458.036" d:DesignWidth="607.143" Width="350" Height="450" Opacity="0.9">
+    <Grid Margin="0,0,10,-0.4" Opacity="0.9">
+        <Grid.Background>
+            <ImageBrush ImageSource="/biliDanmaku;component/Resource/SaveSlot.png"/>
+        </Grid.Background>
+        <TextBox x:Name="logBox" Margin="15,25" TextWrapping="Wrap" Text=" " FontSize="18" Background="{x:Null}" ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Visible"/>
+    </Grid>
+</UserControl>

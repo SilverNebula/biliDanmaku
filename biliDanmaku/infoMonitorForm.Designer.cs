@@ -41,69 +41,77 @@
             // label_target
             // 
             this.label_target.AutoSize = true;
-            this.label_target.Location = new System.Drawing.Point(22, 21);
+            this.label_target.Location = new System.Drawing.Point(29, 26);
+            this.label_target.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_target.Name = "label_target";
-            this.label_target.Size = new System.Drawing.Size(71, 12);
+            this.label_target.Size = new System.Drawing.Size(91, 15);
             this.label_target.TabIndex = 0;
             this.label_target.Text = "监控目标uid";
             // 
             // label_fan
             // 
             this.label_fan.AutoSize = true;
-            this.label_fan.Location = new System.Drawing.Point(22, 59);
+            this.label_fan.Location = new System.Drawing.Point(29, 74);
+            this.label_fan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_fan.Name = "label_fan";
-            this.label_fan.Size = new System.Drawing.Size(41, 12);
+            this.label_fan.Size = new System.Drawing.Size(52, 15);
             this.label_fan.TabIndex = 1;
             this.label_fan.Text = "粉丝数";
             // 
             // label_num
             // 
             this.label_num.AutoSize = true;
-            this.label_num.Location = new System.Drawing.Point(22, 98);
+            this.label_num.Location = new System.Drawing.Point(29, 122);
+            this.label_num.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_num.Name = "label_num";
-            this.label_num.Size = new System.Drawing.Size(41, 12);
+            this.label_num.Size = new System.Drawing.Size(52, 15);
             this.label_num.TabIndex = 2;
             this.label_num.Text = "播放量";
             // 
             // uidbox
             // 
-            this.uidbox.Location = new System.Drawing.Point(191, 21);
+            this.uidbox.Location = new System.Drawing.Point(255, 26);
+            this.uidbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uidbox.Name = "uidbox";
-            this.uidbox.Size = new System.Drawing.Size(72, 21);
+            this.uidbox.Size = new System.Drawing.Size(95, 25);
             this.uidbox.TabIndex = 3;
             // 
             // fan_number
             // 
             this.fan_number.AutoSize = true;
-            this.fan_number.Location = new System.Drawing.Point(85, 59);
+            this.fan_number.Location = new System.Drawing.Point(113, 74);
+            this.fan_number.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.fan_number.Name = "fan_number";
-            this.fan_number.Size = new System.Drawing.Size(41, 12);
+            this.fan_number.Size = new System.Drawing.Size(55, 15);
             this.fan_number.TabIndex = 4;
             this.fan_number.Text = "label1";
             // 
             // play_number
             // 
             this.play_number.AutoSize = true;
-            this.play_number.Location = new System.Drawing.Point(87, 98);
+            this.play_number.Location = new System.Drawing.Point(116, 122);
+            this.play_number.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.play_number.Name = "play_number";
-            this.play_number.Size = new System.Drawing.Size(41, 12);
+            this.play_number.Size = new System.Drawing.Size(55, 15);
             this.play_number.TabIndex = 5;
             this.play_number.Text = "label2";
             // 
             // uid
             // 
             this.uid.AutoSize = true;
-            this.uid.Location = new System.Drawing.Point(99, 21);
+            this.uid.Location = new System.Drawing.Point(132, 26);
+            this.uid.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.uid.Name = "uid";
-            this.uid.Size = new System.Drawing.Size(23, 12);
+            this.uid.Size = new System.Drawing.Size(31, 15);
             this.uid.TabIndex = 6;
             this.uid.Text = "UID";
             // 
             // btn_start
             // 
-            this.btn_start.Location = new System.Drawing.Point(191, 59);
+            this.btn_start.Location = new System.Drawing.Point(255, 74);
+            this.btn_start.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(72, 23);
+            this.btn_start.Size = new System.Drawing.Size(96, 29);
             this.btn_start.TabIndex = 7;
             this.btn_start.Text = "Start!";
             this.btn_start.UseVisualStyleBackColor = true;
@@ -118,16 +126,18 @@
             // refresh_time
             // 
             this.refresh_time.AutoSize = true;
-            this.refresh_time.Location = new System.Drawing.Point(206, 98);
+            this.refresh_time.Location = new System.Drawing.Point(275, 122);
+            this.refresh_time.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.refresh_time.Name = "refresh_time";
-            this.refresh_time.Size = new System.Drawing.Size(29, 12);
+            this.refresh_time.Size = new System.Drawing.Size(39, 15);
             this.refresh_time.TabIndex = 8;
             this.refresh_time.Text = "time";
             // 
             // infoMonitorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.refresh_time);
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.uid);
@@ -137,8 +147,9 @@
             this.Controls.Add(this.label_num);
             this.Controls.Add(this.label_fan);
             this.Controls.Add(this.label_target);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "infoMonitorForm";
-            this.Size = new System.Drawing.Size(300, 200);
+            this.Size = new System.Drawing.Size(400, 250);
             this.ResumeLayout(false);
             this.PerformLayout();
 
