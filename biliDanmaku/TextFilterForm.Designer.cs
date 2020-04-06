@@ -54,7 +54,7 @@
             this.TargetList.Location = new System.Drawing.Point(36, 112);
             this.TargetList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TargetList.Name = "TargetList";
-            this.TargetList.Size = new System.Drawing.Size(193, 260);
+            this.TargetList.Size = new System.Drawing.Size(193, 286);
             this.TargetList.TabIndex = 1;
             this.TargetList.UseCompatibleStateImageBehavior = false;
             this.TargetList.View = System.Windows.Forms.View.List;
@@ -71,7 +71,7 @@
             this.LogBox.Multiline = true;
             this.LogBox.Name = "LogBox";
             this.LogBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.LogBox.Size = new System.Drawing.Size(208, 282);
+            this.LogBox.Size = new System.Drawing.Size(236, 308);
             this.LogBox.TabIndex = 2;
             // 
             // btn_add
@@ -113,9 +113,9 @@
             this.checkBox1.Location = new System.Drawing.Point(140, 84);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(75, 19);
+            this.checkBox1.Size = new System.Drawing.Size(89, 19);
             this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "捕捉ID";
+            this.checkBox1.Text = "捕捉文本";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // TextFilterForm
@@ -131,7 +131,7 @@
             this.Controls.Add(this.addName);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TextFilterForm";
-            this.Size = new System.Drawing.Size(508, 398);
+            this.Size = new System.Drawing.Size(520, 420);
             this.ResumeLayout(false);
             this.PerformLayout();
 

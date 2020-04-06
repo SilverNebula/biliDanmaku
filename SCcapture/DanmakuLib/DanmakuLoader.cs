@@ -206,9 +206,8 @@ namespace BiliDMLib
                                         }
 
                                     }
-                                    catch (Exception ed)
+                                    catch (Exception)
                                     {
-                                        Console.WriteLine(ed.Message);
                                         Console.WriteLine("wtf");
                                         // ignored
                                     }

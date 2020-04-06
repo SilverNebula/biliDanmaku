@@ -32,6 +32,7 @@ namespace biliDanmaku
             //
             return;
         }
+        //初始化委托
         private void initDeligate()
         {
             
@@ -71,16 +72,33 @@ namespace biliDanmaku
         }
         private void OnReceivedDanmaku(object sender,ReceivedDanmakuArgs e)
         {
-            string text = e.Danmaku.CommentText;
-            if (text == null) return;
-            //Console.WriteLine(text);
-            this.Invoke(new Action(() => 
-                {
-                    Addlog(text);
-                    textFilterForm1.OnReceive(sender, e);
-                })
-            );
-            
+            switch (e.Danmaku.MsgType)
+            {
+                case MsgTypeEnum.Comment: //接收弹幕
+                    {
+                        string text = e.Danmaku.CommentText;
+                        if (text == null) return;
+                        Console.WriteLine("in1");
+                        Console.WriteLine(text);
+                        this.Invoke(new Action(() =>
+                        {
+                            Addlog(text);
+                            textFilterForm1.OnReceive(sender, e);
+                        })
+                        );
+                        break;
+                    }
+                case MsgTypeEnum.LiveStart: //接收开播信息
+                    {
+                        textFilterForm1.reset_flag(true);
+                        break;
+                    }
+                case MsgTypeEnum.LiveEnd: 
+                    {
+                        textFilterForm1.reset_flag(false);
+                        break;
+                    }
+            }
             return;
         }
         private void OnReceivedRoomCount(object sender,ReceivedRoomCountArgs e)
@@ -110,9 +128,10 @@ namespace biliDanmaku
                 basicLink.Visible = false;
                 RoomID.Visible = false;
                 button1.Visible = false;
-                this.textFilterForm1.Location = new Point(10, 228);
-                this.infoMonitorForm1.Location = new Point(50, 14);
+                this.textFilterForm1.Location = new Point(10, 182);
+                this.infoMonitorForm1.Location = new Point(40, 13);
                 this.btn_fold.Location = new Point(10, 36);
+                this.button_help.Location = new Point(10, 76);
                 this.textFilterForm1.Anchor = AnchorStyles.Left | AnchorStyles.Top 
                     | AnchorStyles.Bottom;
                 this.Width = 600;
@@ -123,13 +142,20 @@ namespace biliDanmaku
                 basicLink.Visible = true;
                 RoomID.Visible = true;
                 button1.Visible = true;
-                this.Width = 1200;
-                this.Height = 669;
-                this.textFilterForm1.Location = new Point(532, 228);
-                this.infoMonitorForm1.Location= new Point(729, 14);
-                this.btn_fold.Location= new Point(681, 36);
+                this.Width = 970;
+                this.Height = 600;
+                this.textFilterForm1.Location = new Point(399, 182);
+                this.infoMonitorForm1.Location= new Point(569, 13);
+                this.btn_fold.Location= new Point(510, 29);
+                this.button_help.Location = new Point(510, 76);
                 this.textFilterForm1.Anchor = (AnchorStyles)15;
             }
+            return;
+        }
+
+        private void button_help_Click(object sender, EventArgs e) {
+            HelpForm hpf = new HelpForm();
+            hpf.Show();
             return;
         }
     }

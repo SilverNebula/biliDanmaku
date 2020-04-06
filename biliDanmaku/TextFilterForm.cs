@@ -20,7 +20,21 @@ namespace biliDanmaku
             InitializeComponent();
             textFilter.init();
         }
-        DateTime nowtime=new DateTime();
+        private DateTime startTime = DateTime.Now;
+        //private TimeSpan nowtime = new TimeSpan();
+        private bool timeflag = false;
+        public void reset_flag(bool flag) {
+            if (flag == true && timeflag==false) {//刷新时间
+                this.startTime = DateTime.Now;
+                this.AddLog("记录开始时间:" + this.startTime.ToString());
+                timeflag = true;
+            }
+            if (flag==false) {//取消刷新时间
+                timeflag = false;
+                this.autoSave();
+            }
+            return;
+        }
         //接受弹幕时处理 
         private void AddLog(string str) {
             this.LogBox.AppendText(str);
@@ -32,7 +46,8 @@ namespace biliDanmaku
         }
         public void OnReceive(object sender, ReceivedDanmakuArgs e)
         {
-            nowtime = DateTime.Now;
+            //string nowtime = (DateTime.Now - startTime).ToString(@"hh\:mm\:ss");
+            string nowtime = DateTime.Now.ToString();
             string a = e.Danmaku.CommentText;
             string b = e.Danmaku.UserName;
             if (a == null || a == "") return;
@@ -41,6 +56,7 @@ namespace biliDanmaku
                     
                     this.Invoke(new Action(() =>
                     {
+                        Console.WriteLine("in" + a);
                         this.AddLog(nowtime.ToString() + a + Environment.NewLine);
                         this.LogBox.Refresh();
                     })
@@ -62,7 +78,7 @@ namespace biliDanmaku
                 {
                     this.Invoke(new Action(() =>
                     {
-                        this.AddLog(a + "|" + b + "|" + Environment.NewLine);
+                        this.AddLog(nowtime.ToString() + a + "|" + b + "|" + Environment.NewLine);
                         //this.LogBox.Text += nowtime.ToString() + a + Environment.NewLine;
                         this.LogBox.Refresh();
                     })
@@ -106,12 +122,35 @@ namespace biliDanmaku
             }
             return;
         }
+        private SaveFileDialog saveFileDialog = new SaveFileDialog();
+        private bool saveFilechoosed = false;
+        private void autoSave() {
+            if (saveFilechoosed == false) return;
+            try {
+                string dst = saveFileDialog.FileName;
+                FileStream fileStream = new FileStream(dst, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read);
+                fileStream.Position = fileStream.Length;
+                StreamWriter streamWriter = new StreamWriter(fileStream);
+                try {
+                    streamWriter.Write(this.LogBox.Text);
+                    streamWriter.Close();
+                }
+                catch {
+                    return;
+                }
+                this.LogBox.Text = "Auto Saved at" + DateTime.Now.ToString();
+                fileStream.Close();
+            }
+            catch{
 
+            }
+            return;
+        }
         private void btn_save_Click(object sender, EventArgs e) {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "文本文件(*.txt)|*.txt";
             saveFileDialog.OverwritePrompt = false;
             if (saveFileDialog.ShowDialog() != DialogResult.Cancel) {
+                saveFilechoosed = true;
                 string dst = saveFileDialog.FileName;
                 FileStream fileStream = new FileStream(dst, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read);
                 fileStream.Position = fileStream.Length;

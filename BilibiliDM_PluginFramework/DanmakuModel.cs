@@ -48,8 +48,11 @@ namespace BilibiliDM_PluginFramework
         /// <summary>
         /// 购买船票（上船）
         /// </summary>
-        GuardBuy
-
+        GuardBuy,
+        /// <summary>
+        /// SC留言
+        /// </summary>
+        SUPER_CHAT_MESSAGE
     }
 
     public class DanmakuModel
@@ -296,13 +299,34 @@ namespace BilibiliDM_PluginFramework
                                     GiftCount = obj["data"]["num"].ToObject<int>();
                                     break;
                                 }
+                            case "SUPER_CHAT_MESSAGE": 
+                                {
+                                    MsgType = MsgTypeEnum.SUPER_CHAT_MESSAGE;
+                                    UserID = obj["data"]["uid"].ToObject<int>();
+                                    UserName = obj["data"]["user_info"]["uname"].ToString();
+                                    GiftCount = obj["data"]["price"].ToObject<int>();
+                                    CommentText = obj["data"]["message"].ToString();
+                                    GiftName = obj["data"]["background_price_color"].ToString();
+                                    break;
+                                }
+                            /*
+                            case "SUPER_CHAT_MESSAGE_JPN": 
+                                {
+                                    MsgType = MsgTypeEnum.SUPER_CHAT_MESSAGE;
+                                    UserID = obj["data"]["uid"].ToObject<int>();
+                                    UserName = obj["data"]["user_info"]["uname"].ToString();
+                                    GiftCount = obj["data"]["price"].ToObject<int>();
+                                    CommentText = obj["data"]["message"].ToString() + " " + obj["data"]["message_jpn"].ToString();
+                                    GiftName = obj["data"]["background_price_color"].ToString();
+                                    break;
+                                }
+                            */
                             default:
                                 {
                                     MsgType = MsgTypeEnum.Unknown;
                                     break;
                                 }
                         }
-
                         if (cmd.StartsWith("DANMU_MSG")) // "高考"fix
                         {
                             MsgType = MsgTypeEnum.Comment;

@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SCcapture" GeneratedClassName="Setting">
+  <Profiles />
+  <Settings>
+    <Setting Name="RoomID" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">14327465</Value>
+    </Setting>
+    <Setting Name="SCpicture" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\SilverN\CODE\biliDanmaku\SCcapture\Resource\neko1.png</Value>
+    </Setting>
+    <Setting Name="Time" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="Voice" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MinSC" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MsgFormat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ID:{0}  Count:{1}  Msg:{2}</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
