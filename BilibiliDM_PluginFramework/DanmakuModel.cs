@@ -224,7 +224,15 @@ namespace BilibiliDM_PluginFramework
                     }
                 case 2:
                     {
-                        var obj = JObject.Parse(JSON);
+                        JObject obj;
+                        try {
+                            obj = JObject.Parse(JSON);
+                        }
+                        catch (Exception e) {
+                            Console.WriteLine(e);
+                            throw;
+                        }
+
                         RawDataJToken = obj;
                         string cmd = obj["cmd"].ToString();
                         switch(cmd)
@@ -324,21 +332,20 @@ namespace BilibiliDM_PluginFramework
                             default:
                                 {
                                     MsgType = MsgTypeEnum.Unknown;
+                                    if (cmd.StartsWith("DANMU_MSG")) // "高考"fix
+{
+                                        MsgType = MsgTypeEnum.Comment;
+                                        CommentText = obj["info"][1].ToString();
+                                        UserID = obj["info"][2][0].ToObject<int>();
+                                        UserName = obj["info"][2][1].ToString();
+                                        isAdmin = obj["info"][2][2].ToString() == "1";
+                                        isVIP = obj["info"][2][3].ToString() == "1";
+                                        UserGuardLevel = obj["info"][7].ToObject<int>();
+                                        break;
+                                    }
                                     break;
                                 }
                         }
-                        if (cmd.StartsWith("DANMU_MSG")) // "高考"fix
-                        {
-                            MsgType = MsgTypeEnum.Comment;
-                            CommentText = obj["info"][1].ToString();
-                            UserID = obj["info"][2][0].ToObject<int>();
-                            UserName = obj["info"][2][1].ToString();
-                            isAdmin = obj["info"][2][2].ToString() == "1";
-                            isVIP = obj["info"][2][3].ToString() == "1";
-                            UserGuardLevel = obj["info"][7].ToObject<int>();
-                            break;
-                        }
-
                         break;
                     }
 
